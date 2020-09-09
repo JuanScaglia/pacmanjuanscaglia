@@ -103,6 +103,7 @@ gameOver() {
 score = 0;
 doteat = 0;
 velocidad = 300;
+mvelocidad = -300;
 };
 
 
