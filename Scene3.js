@@ -41,6 +41,7 @@ class Scene3 extends Phaser.Scene {
         this.add.image(300, 520, 'boton1').setInteractive().on('pointerdown', () => this.level1() );
         this.add.image(300,570, 'boton2').setInteractive().on('pointerdown', () => this.level2() );
         this.add.image(310,80, 'logo');
+        this.add.text(150,455, 'Para jugar utilizá W,A,S,D. ', {fontSize: 20}).setTint(0xffffff).setAlpha(0.8);
     };
 
     level1(){
