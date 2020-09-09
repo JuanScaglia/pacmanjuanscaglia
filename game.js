@@ -5,7 +5,6 @@ var config = {
         autoCenter: Phaser.Scale.CENTER_BOTH,
         width: 608,
         height: 608,
-        
     },
     physics: {
         default: 'arcade',
@@ -24,9 +23,20 @@ var game = new Phaser.Game(config);
 var map;
 var mapimages;
 var pacman;
+var pacmanmalo;
+var pacmanmalo2;
+var pacmanmalo3;
 var cursor_a;
 var cursor_d;
 var cursor_w;
 var cursor_s;
-
-
+var dot;
+var score = 0;
+var scoretext;
+var gameOver;
+var doteat = 0;
+var bstext;
+var bestscore = 0;
+var enemigos;
+var velocidad = 300;
+var mvelocidad = -300;
