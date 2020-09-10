@@ -10,7 +10,7 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: false
+            debug: true
         }
 
     },
@@ -40,3 +40,4 @@ var bestscore = 0;
 var enemigos;
 var velocidad = 300;
 var mvelocidad = -300;
+var bigdot;

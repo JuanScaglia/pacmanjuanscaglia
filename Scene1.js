@@ -25,6 +25,8 @@ class Scene1 extends Phaser.Scene {
     obj.setOrigin(0,1);
     obj.setSize(10,10).setOffset(27,-5);
   });
+
+  bigdot = this.physics.add.sprite(250,280, 'todo', 'pacman02').setOrigin(0,0).setScale(1.5).setTint(0xff0000).setSize(10,10);
   
   pacman = new Personaje({scene:this, x:48, y:560, texture: 'todo', sprite:'pacman00'}).setSize(25,25);
   enemigos = new Enemigos({scene:this});
@@ -32,13 +34,17 @@ class Scene1 extends Phaser.Scene {
   //colisiones
  
   this.physics.add.collider(pacman, layer); 
-  this.physics.add.collider(pacmanmalo, layer); 
-  this.physics.add.collider(pacmanmalo, pacman, this.muerte, null, this);
-  this.physics.add.collider(pacmanmalo2, pacman, this.muerte, null, this); 
-  this.physics.add.collider(pacmanmalo2, layer); 
-  this.physics.add.collider(pacmanmalo3, pacman, this.muerte, null, this); 
+  this.physics.add.collider(pacmanmalo, layer);
+  this.physics.add.collider(pacmanmalo2, layer);
   this.physics.add.collider(pacmanmalo3, layer); 
+
+  this.physics.add.collider(pacmanmalo, pacman, this.muerte, null, this);
+  this.physics.add.collider(pacmanmalo2, pacman, this.muerte, null, this);
+  this.physics.add.collider(pacmanmalo3, pacman, this.muerte, null, this); 
+
   this.physics.add.overlap(pacman, dot, this.puntos, null, this);
+  this.physics.add.overlap(pacman, bigdot, this.bigpuntos, null, this);
+
   
   layer.setCollision([132, 132, 132, 132, 132, 132, 132, 132, 90, 48, 90, 132, 132, 132, 132, 132, 132, 132, 
     132, 132, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132, 132, 0, 34, 0, 34, 0, 34, 0, 34, 0, 34, 
@@ -61,8 +67,8 @@ class Scene1 extends Phaser.Scene {
     cursor_w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     cursor_s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
 
-    scoretext = this.add.text(16,3, 'Puntos ' + score, {fontSize: 25}).setTint(0xFFF000);
-    bstext = this.add.text(256, 3, 'Mejor puntuación ' + bestscore, {fontSize: 25}).setTint(0xffffff);
+    scoretext = this.add.text(32,2, 'Puntos ' + score, {font: "25px Arial Black"}).setTint(0xfff000);
+    bstext = this.add.text(256, 2, 'Mejor puntuación ' + bestscore, {font: "25px Arial Black"}).setTint(0xffffff);
 
   
 
@@ -81,7 +87,7 @@ update ()
  doteat = 0;
  velocidad = velocidad + 100;
  mvelocidad = mvelocidad - 100;
- }
+};
 
   //mejor puntuación//     
   if (bestscore <= score){
@@ -104,6 +110,12 @@ doteat = 0;
 velocidad = 300;
 mvelocidad = -300;
 };
+
+bigpuntos(pacman, bigdot){
+  bigdot.destroy(this);
+  score = score + 500;
+  scoretext.setText('Puntos ' + score);
+ };
 
 puntos(pacman, dot){
  dot.destroy(dot.x, dot.y);
